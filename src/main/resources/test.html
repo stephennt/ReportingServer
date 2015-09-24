@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Test SSE</title>
+</head>
+<body>
+    <script>
+        var sse = new EventSource("http://localhost:8080/sse");
+        sse.onmessage = function(e) {
+            $("#testlist").append( "<li>message: " + e.data + "</li>" );
+        }
+
+        window.setTimeout( function() {
+            sse.close();
+        }, 5000 );
+    </script>
+
+    <ul id="testlist">
+    </ul>
+</body>
+</html>
